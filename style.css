@@ -1,0 +1,23 @@
+.navbar-nav{
+    margin-left: 400px;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.navbar-brand{
+    margin-left: 100px;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.navbar{
+    background-color: white;
+}
+.navlink{
+    
+}
+.nav-link:hover{
+    color: blue !important;
+    border-bottom: 2px solid blue;
+    transition: border 0.2s;
+}
