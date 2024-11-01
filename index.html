@@ -9,6 +9,45 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="fav.jpg" type="image/x-icon">
     <title>Portfolio | Niaz</title>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cardWrapper = document.querySelector(".cardWrapper");
+        const card = document.querySelector(".card");
+        const highlight = document.querySelector(".highlight");
+
+        const mostX = 10; // max tilt angles
+        const mostY = 10;
+
+        cardWrapper.addEventListener("mousemove", (e) => {
+            card.style.transition = "none";
+            highlight.style.transition = "none";
+
+            const x = e.offsetX;
+            const y = e.offsetY;
+            const { width, height } = cardWrapper.getBoundingClientRect();
+            const halfWidth = width / 2;
+            const halfHeight = height / 2;
+
+            const rotationY = ((x - halfWidth) / halfWidth) * mostX;
+            const rotationX = ((y - halfHeight) / halfHeight) * mostY;
+
+            card.style.transform = `rotateY(${rotationY}deg) rotateX(${rotationX}deg)`;
+            highlight.style.left = `${(rotationY / mostX) * -30}%`;
+            highlight.style.top = `${(rotationX / mostY) * -30}%`;
+        });
+
+        cardWrapper.addEventListener("mouseleave", () => {
+            card.style.transition = "transform 0.5s ease-in-out";
+            card.style.transform = `rotateY(0) rotateX(0)`;
+            highlight.style.transition = "left 0.5s ease-in-out, top 0.5s ease-in-out";
+            highlight.style.left = `-20%`;
+            highlight.style.top = `-13%`;
+        });
+    });
+
+
+    </script>
 </head>
 <body>
   <!-- Navbar -->
@@ -33,16 +72,40 @@
   </nav>
   <!-- Header Page -->
    <header class="header-section">
-    <h1 class="hs-title">Hi There,<br>I'm Niaz <span class="hst-color">Al Motin</span></h1>
-    <p class="hs-desc">I Am Into <span class="hsd-post">Website Development</span></p>
-    <button class="hs-btn">About Me <i class="fa-solid fa-arrow-down hsb-icon"></i></button>
-    <div class="social-icon">
-      <div><i class="fa-brands fa-linkedin"></i></div>
-      <div><i class="fa-brands fa-facebook"></i></div>
-      <div><i class="fa-brands fa-instagram"></i></div>
-      <div><i class="fa-brands fa-youtube"></i></div>
-    </div>
-    <img class="profile-img" src="fav.jpg" alt="">
+    
+    <div class="hs-child">
+      <h1 class="hs-title">Hi There,<br>I'm Niaz <span class="hst-color">Al Motin</span></h1>
+      <p class="hs-desc">I Am Into <span class="hsd-post">Website Development</span></p>
+      <button class="hs-btn">About Me <i class="fa-solid fa-arrow-down hsb-icon"></i></button>
+      <div class="social-icon">
+        <div><i class="fa-brands fa-linkedin"></i></div>
+        <div><i class="fa-brands fa-facebook"></i></div>
+        <div><i class="fa-brands fa-instagram"></i></div>
+        <div><i class="fa-brands fa-youtube"></i></div>
+      </div>
+      </div>
+      <section class="prfl-img">
+        <div class="container">
+            <div class="cardWrapper">
+                <div class="card">
+                    <div class="bg">
+                        <img src="fav.jpg" alt="">
+                    </div>
+                    <div class="card__name">
+                        <p></p>
+                    </div>
+                    <div class="card__number">
+                        <div class="card__number--stars"></div>
+                        <div class="card__number--stars"></div>
+                        <div class="card__number--stars"></div>
+                        <div></div>
+                    </div>
+                    <div class="highlight"></div> <!-- Keep this for the highlight effect -->
+                </div>
+            </div>
+        </div>
+    </section>
    </header>
+
 </body>
 </html>
